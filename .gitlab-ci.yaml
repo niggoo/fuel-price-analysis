@@ -1,0 +1,10 @@
+html:
+  image: python:3.9
+  artifacts:
+    paths:
+      - fuel-prices-notebook.html
+    expire_in: 1 week
+  before_script:
+    - pip install nbconvert pandas seaborn matplotlib
+  script:
+    - jupyter nbconvert --execute --to html fuel-prices-notebook.ipynb

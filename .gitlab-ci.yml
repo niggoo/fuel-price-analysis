@@ -1,10 +1,16 @@
+stages:
+  - build
+
 html:
+  stage: build
   image: python:3.9
   artifacts:
     paths:
       - fuel-prices-notebook.html
     expire_in: 1 week
+
   before_script:
-    - pip install nbconvert pandas seaborn matplotlib
+    - pip install nbconvert pandas seaborn matplotlib ipython ipykernel
+
   script:
     - jupyter nbconvert --execute --to html fuel-prices-notebook.ipynb
